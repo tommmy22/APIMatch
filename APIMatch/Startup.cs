@@ -14,7 +14,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace APIMatch
@@ -47,6 +49,21 @@ namespace APIMatch
 
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            services
+                .AddSwaggerGen(setupAction =>
+                {
+                    setupAction.SwaggerDoc("APIMatch.APIOpenSpecification", new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "APIMatch",
+                        Version = "0.1"
+                    });
+
+                    var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+
+                    setupAction.IncludeXmlComments(xmlCommentsFullPath);
+                });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll", p =>
@@ -68,11 +85,17 @@ namespace APIMatch
 
             //app.UseHttpsRedirection();
 
-            //app.UseSwaggerAsHome();
-
             app.UseRouting();
 
             app.UseCors("AllowAll");
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(setupAction =>
+            {
+                setupAction.SwaggerEndpoint("/swagger/APIMatch.APIOpenSpecification/swagger.json", "Bienvenue sur mon API Match");
+                setupAction.RoutePrefix = string.Empty;
+            });
 
             app.UseAuthorization();
 
