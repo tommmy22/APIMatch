@@ -68,9 +68,7 @@ namespace APIMatch
 
             //app.UseHttpsRedirection();
 
-            app.UseSwaggerAsHome();
-
-            app.UseDeveloperExceptionPage();
+            //app.UseSwaggerAsHome();
 
             app.UseRouting();
 
