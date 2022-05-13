@@ -14,5 +14,6 @@ namespace APIMatch.Models
         public Championship Championship { get; set; }
 
         public string ImageUrl { get; set; }
+        public string ImageStade { get; set; }
     }
 }
