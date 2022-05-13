@@ -12,5 +12,6 @@ namespace APIMatch.Dtos.Team
         public int ChampionshipId { get; set; }
         public string ChampionshipName { get; set; }
         public string ImageUrl { get; set; }
+        public string ImageStade { get; set; }
     }
 }
