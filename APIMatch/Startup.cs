@@ -14,9 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace APIMatch
@@ -33,7 +31,7 @@ namespace APIMatch
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TeamContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AzureConnection")));
+            services.AddDbContext<TeamContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<User, Role>(options => options.Password.RequireUppercase = true)
                 .AddEntityFrameworkStores<TeamContext>()
@@ -48,21 +46,6 @@ namespace APIMatch
             services.AddSwagger();
 
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-            services
-                .AddSwaggerGen(setupAction =>
-                {
-                    setupAction.SwaggerDoc("APIMatch.APIOpenSpecification", new Microsoft.OpenApi.Models.OpenApiInfo()
-                    {
-                        Title = "APIMatch",
-                        Version = "0.1"
-                    });
-
-                    var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                    var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
-
-                    setupAction.IncludeXmlComments(xmlCommentsFullPath);
-                });
 
             services.AddCors(options =>
             {
@@ -85,17 +68,11 @@ namespace APIMatch
 
             //app.UseHttpsRedirection();
 
+            app.UseSwaggerAsHome();
+
             app.UseRouting();
 
             app.UseCors("AllowAll");
-
-            app.UseSwagger();
-
-            app.UseSwaggerUI(setupAction =>
-            {
-                setupAction.SwaggerEndpoint("/swagger/APIMatch.APIOpenSpecification/swagger.json", "Bienvenue sur mon API Match");
-                setupAction.RoutePrefix = string.Empty;
-            });
 
             app.UseAuthorization();
 

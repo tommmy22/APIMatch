@@ -8,6 +8,10 @@
     <DocumentationFile>C:\Users\Tom.MONAT\source\repos\APIMatch\APIMatch\APIMatch.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Users\Tom.MONAT\source\repos\APIMatch\APIMatch\APIMatch.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
