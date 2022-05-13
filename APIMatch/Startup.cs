@@ -70,6 +70,8 @@ namespace APIMatch
 
             app.UseSwaggerAsHome();
 
+            app.UseDeveloperExceptionPage();
+
             app.UseRouting();
 
             app.UseCors("AllowAll");
