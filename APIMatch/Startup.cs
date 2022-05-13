@@ -31,7 +31,7 @@ namespace APIMatch
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TeamContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<TeamContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AzureConnection")));
 
             services.AddIdentity<User, Role>(options => options.Password.RequireUppercase = true)
                 .AddEntityFrameworkStores<TeamContext>()
