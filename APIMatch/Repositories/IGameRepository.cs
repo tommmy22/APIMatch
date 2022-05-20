@@ -12,5 +12,6 @@ namespace APIMatch.Repositories
         Game CreateGame(Game game);
         Game GetGameById(int gameId);
         void DeleteGame(int gameId);
+        IEnumerable<Game> GetGameByChampionshipId(int championshipId);
     }
 }

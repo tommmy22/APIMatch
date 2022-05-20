@@ -18,5 +18,9 @@ namespace APIMatch.Models
         public int? ExtTeamId { get; set; }
         [ForeignKey("ExtTeamId")]
         public Team ExtTeam { get; set; }
+
+        public int? ChampionshipId { get; set; }
+        [ForeignKey("ChampionshipId")]
+        public Championship Championship { get; set; }
     }
 }

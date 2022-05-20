@@ -11,5 +11,6 @@ namespace APIMatch.Models
         public int ChampionshipId { get; set; }
         public string Name { get; set; }
         public ICollection<Team> Teams { get; set; }
+        public ICollection<Game> Games { get; set; }
     }
 }

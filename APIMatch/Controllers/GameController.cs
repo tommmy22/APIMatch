@@ -34,6 +34,12 @@ namespace APIMatch.Controllers
             return Ok(_gameRepository.GetGameById(gameId));
         }
 
+        [HttpGet("championship/{championshipId}")]
+        public ActionResult<Game> GetGameByChampionshipId(int championshipId)
+        {
+            return Ok(_gameRepository.GetGameByChampionshipId(championshipId));
+        }
+
         [HttpPost]
         public ActionResult CreateGame(CreateGameDto gameDto)
         {

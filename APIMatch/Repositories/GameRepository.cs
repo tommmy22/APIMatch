@@ -17,6 +17,11 @@ namespace APIMatch.Repositories
             _context = context;
         }
 
+        public IEnumerable<Game> GetGameByChampionshipId(int championshipId)
+        {
+            return _context.Game.Where(g => g.ChampionshipId == championshipId).ToList();
+        }
+
         public IEnumerable<Game> GetAllGames()
         {
             return _context.Game

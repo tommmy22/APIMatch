@@ -1,5 +1,6 @@
 ﻿using APIMatch.EquipeDBContext;
 using APIMatch.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,6 @@ namespace APIMatch.Repositories
         {
             return _context.Championship.ToList();
         }
-
         public Championship GetChampionshipById(int championshipId)
         {
             return _context.Championship.Find(championshipId);
