@@ -12,5 +12,6 @@ namespace APIMatch.Dtos.Game
         public string Address { get; set; }
         public int ExtTeamId { get; set; }
         public int HomeTeamId { get; set; }
+        public int ChampionshipId { get; set; }
     }
 }
