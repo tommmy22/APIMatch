@@ -22,5 +22,8 @@ namespace APIMatch.Models
         public int? ChampionshipId { get; set; }
         [ForeignKey("ChampionshipId")]
         public Championship Championship { get; set; }
+
+        public string Commentaire { get; set; }
+
     }
 }
