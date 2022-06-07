@@ -17,5 +17,6 @@ namespace APIMatch.EquipeDBContext
         public DbSet<Championship> Championship { get; set; }
         public DbSet<Game> Game { get; set; }
         public DbSet<Team> Team { get; set; }
+        public DbSet<Team> Etat { get; set; }
     }
 }

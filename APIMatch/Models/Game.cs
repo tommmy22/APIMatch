@@ -24,5 +24,9 @@ namespace APIMatch.Models
         public Championship Championship { get; set; }
         public string Commentaire { get; set; }
 
+        public int? EtatId { get; set; }
+        [ForeignKey("EtatId")]
+        public Etat Etat { get; set; }
+
     }
 }
